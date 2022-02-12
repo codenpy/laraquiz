@@ -1,0 +1,126 @@
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
+
+/*# sourceMappingURL=custom.css.map */
+
+.field-required {
+    color: red;
+}
+.price-features {
+    list-style: none;
+}
+.nav-link.active-menu {
+    color: #6777ef !important;
+}
+
+/* Toggle switch */
+.section-checkbox {
+    display: none;
+}
+
+.switch {
+    align-items: center;
+    background-color: gray;
+    border-radius: 500px;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    padding: 0 10px;
+    position: relative;
+    user-select: none;
+    width: 80px;
+}
+
+.section-checkbox:checked ~ .switch {
+    background-color: #6777ef;
+}
+
+.section-checkbox:not(:checked) ~ .switch {
+    background-color: gray;
+}
+
+.switch__left,
+.switch__right {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.section-checkbox:checked ~ .switch .switch__left {
+    visibility: hidden;
+}
+
+.section-checkbox:not(:checked) ~ .switch .switch__right {
+    visibility: hidden;
+}
+
+.switch__circle {
+    height: 40px;
+    padding: 5px;
+    position: absolute;
+    transition: all 0.1s linear;
+    width: 40px;
+}
+
+.section-checkbox:checked ~ .switch .switch__circle {
+    left: 0;
+    right: calc(100% - 40px);
+}
+
+.section-checkbox:not(:checked) ~ .switch .switch__circle {
+    left: calc(100% - 40px);
+    right: 0;
+}
+
+.switch__circle-inner {
+    background-color: white;
+    border-radius: 50%;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.product-img img {
+    width: 100%;
+    /* margin: 0 12px 10px; */
+    height: 100px;
+    margin-bottom: 10px;
+}
+td {
+    font-size: 14px;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 40px;
+}
+.alert {
+    padding: 1px;
+}
+.note-popover .popover-content .dropdown-menu, .card-header.note-toolbar .dropdown-menu {
+    min-width: 90px;
+    margin-top: 90px;
+}
+.table td, .table th {
+    padding: .55rem;
+}
+.h6, h6 {
+    font-size: .9rem;
+}
+.table:not(.table-sm):not(.table-md):not(.dataTable) td, .table:not(.table-sm):not(.table-md):not(.dataTable) th {
+    padding: 10px 10px;
+    height: 60px;
+    vertical-align: middle;
+}
+p, ul:not(.list-unstyled), ol {
+    line-height: 20px;
+}
+.badge {
+    padding: 5px 10px;
+    font-size: 13px;
+}
+td {
+    font-size: 18px;
+}
+.form-group .control-label, .form-group > label {
+    font-size: 15px;
+}
