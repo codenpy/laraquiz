@@ -9,4 +9,8 @@ class Question extends Model
 {
     use HasFactory;
 
+    public function selectedOptions()
+    {
+        return $this->hasMany(SelectedOption::class);
+    }
 }

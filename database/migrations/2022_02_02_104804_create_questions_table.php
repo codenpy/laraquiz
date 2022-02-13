@@ -19,7 +19,6 @@ class CreateQuestionsTable extends Migration
             //$table->foreignId('quiz_id')->constrained('quizzes')->onDelete('set null');
             $table->text('question');
             $table->text('correct');
-            $table->text('selected_option')->nullable();
             $table->text('wrong1');
             $table->text('wrong2')->nullable();
             $table->text('wrong3')->nullable();

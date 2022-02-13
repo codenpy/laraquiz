@@ -9,6 +9,17 @@ class Result extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'user_id',
+        'quiz_id',
+        'score',
+    ];
+
     public function quiz()
     {
         return $this->belongsTo(Quiz::class);

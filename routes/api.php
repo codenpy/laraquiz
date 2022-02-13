@@ -39,9 +39,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('user/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);
     Route::delete('user/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
 
-
+    Route::get('user-taken-quiz/{user_id}', [\App\Http\Controllers\Api\ResultController::class, 'userTakenQuiz']);
+    Route::get('user-taken-quiz-result/{quiz_id}', [\App\Http\Controllers\Api\ResultController::class, 'userTakenQuizResult']);
     Route::post('logout', [\App\Http\Controllers\Api\UserController::class, 'logout']);
 });
 
 
-Route::get('user-results/{user_id}', [\App\Http\Controllers\Api\ResultController::class, 'userResults']);
+

@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\SelectedOption;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
     public function index()
     {
-        $quizes = Quiz::orderBy('id', 'desc')->where('status', 1)->get();
+        $quizzes = Quiz::orderBy('id', 'desc')->where('status', 1)->get();
 
-        return response()->json(['quizes' => $quizes]);
+        return response()->json(['quizzes' => $quizzes]);
     }
 
 
@@ -55,13 +56,15 @@ class QuizController extends Controller
 
     public function quizOptionSelected(Request $request, $question_id)
     {
-
         //dd($request->all());
+        $selected_option = new SelectedOption();
+        $selected_option->user_id = $request->get('user_id');
+        $selected_option->quiz_id = $request->get('quiz_id');
+        $selected_option->question_id = $question_id;
+        $selected_option->selected_option = $request->get('selected_option');
+        $selected_option->save();
 
-        $question = Question::find($question_id);
-        $question->selected_option = $request->get('selected_option');
-        $question->save();
-        return response()->json('Select option updated successfully');
+        return response()->json('Select option added successfully');
 
 
     }

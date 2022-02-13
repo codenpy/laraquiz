@@ -55,13 +55,25 @@ class ResultController extends Controller
         //dd($request->all());
         // convert string to integer
         $score = (int)$request->get('score');
+        $user_id = $request->get('user_id');
+        $quiz_id = $request->get('quiz_id');
 
-        $result = new Result();
-        $result->quiz_id = $request->get('quiz_id');
-        $result->user_id = $request->get('user_id');
+        $result = Result::where('user_id', $user_id)->where('quiz_id', $quiz_id)->first();
+        if ($result === null)
+        {
+            $result = new Result(
+                [
+                    'user_id' => $user_id,
+                    'quiz_id' => $quiz_id,
+                    'score' => $score,
+                ]
+            );
+        }
+        $result->quiz_id = $quiz_id;
+        $result->user_id = $user_id;
         $result->score = $score;
-
         $result->save();
+
 
         //add allscore for user table
         $user = User::find($request->get('user_id'));
@@ -75,15 +87,46 @@ class ResultController extends Controller
 
 
     // Get each user quiz results
-    public function userResults($user_id)
+    public function userTakenQuiz($user_id)
     {
-        $results = Result::where('user_id', $user_id)->latest()->get();
+        $user_results = Result::where('user_id', $user_id)->latest()->get();
 
-        // get result quizzes based on the user
-        //$quizzes = Result::where('user_id', $user_id)->where('')->latest()->get();
+        $quizzes = [];
+        foreach ($user_results as $user_result)
+        {
+            $quiz = Quiz::find($user_result->quiz_id);
+            $questions = Question::where('quiz_id', $user_result->quiz_id)->get();
 
-        //$questions = Question::where('quiz_id', $quiz_id)->get();
+            $item_array = array(
+                'id' => $quiz->id,
+                'name' => $quiz->name,
+                'passing_score' => $quiz->passing_score,
+                'quiz_taken_time' => $user_result->created_at,
+                'score' => $user_result->score,
+                'total_question' => count($questions),
+            );
 
-        dd($results);
+            array_push($quizzes, $item_array);
+        }
+
+
+        return response()->json(['quizzes' => $quizzes]);
+    }
+
+
+    public function userTakenQuizResult(Request $request, $quiz_id)
+    {
+        //$questions = Question::with('selectedOptions')->where('quiz_id', $quiz_id)->get();
+        $questions = Question::with(['selectedOptions' => function($q){
+            $q->where('user_id', \request()->get('user_id'));
+        }])->where('quiz_id', $quiz_id)->get();
+
+        $quiz = Quiz::find($quiz_id);
+        $quiz_info = array(
+            'passing_score' => $quiz->passing_score,
+            'question_time' => $quiz->question_time,
+        );
+
+        return response()->json(['questions' => $questions, 'quiz_info' => $quiz_info]);
     }
 }
