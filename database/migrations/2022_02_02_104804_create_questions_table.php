@@ -16,13 +16,14 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('quiz_id');
-            //$table->foreignId('quiz_id')->constrained('quizzes')->onDelete('set null');
             $table->text('question');
             $table->text('correct');
             $table->text('wrong1');
             $table->text('wrong2')->nullable();
             $table->text('wrong3')->nullable();
             $table->timestamps();
+
+
         });
     }
 

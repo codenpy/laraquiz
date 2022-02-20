@@ -22,6 +22,9 @@ class CreateQuizzesTable extends Migration
             $table->integer('question_time')->default(10);
             $table->integer('status')->default(1);
             $table->timestamps();
+
+            // Relationships
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

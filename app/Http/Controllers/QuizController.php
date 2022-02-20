@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\Result;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -47,14 +48,25 @@ class QuizController extends Controller
     }
 
 
+    public function single($quiz_id)
+    {
+        $quiz = Quiz::find($quiz_id);
+        $results = Result::with('user')->where('quiz_id', $quiz_id)->get();
+        //dd($results);
+
+        return view('backend.quiz.single', compact('quiz', 'results'));
+    }
+
+
+
     public function edit($quiz_id)
     {
         $quiz = Quiz::find($quiz_id);
         $all_questions = Question::where('quiz_id', $quiz_id)
             ->orderBy('id', 'desc')
             ->get();
-        
-            
+
+
         $questions = array();
         foreach ($all_questions as $question) {
             $option_array = array();

@@ -86,6 +86,9 @@
                     <li class="dropdown {{ request()->is('admin') ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}" class="1nav-link"><i data-feather="grid"></i><span>Dashboard</span></a>
                     </li>
+                    <li class="dropdown {{ request()->is('admin/category') ? 'active' : '' }}">
+                        <a href="{{ route('category.index') }}" class="1nav-link"><i data-feather="list"></i><span>Category</span></a>
+                    </li>
                     <li class="dropdown {{ request()->is('admin/quiz') ? 'active' : '' }}">
                         <a href="{{ route('quiz.index') }}" class="1nav-link"><i data-feather="list"></i><span>Quizes</span></a>
                     </li>

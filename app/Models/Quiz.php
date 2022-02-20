@@ -10,6 +10,21 @@ class Quiz extends Model
 {
     use HasFactory, Sluggable;
 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'quiz_id',
+        'passing_score',
+        'question_time',
+        'status',
+    ];
+
+
     /**
      * Return the sluggable configuration array for this model.
      *

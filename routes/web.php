@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
@@ -36,6 +37,7 @@ Route::post('auth/check', [DashboardController::class, 'authCheck'])->name('auth
 Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
 Route::get('quiz/create', [QuizController::class, 'create'])->name('quiz.create');
 Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
+Route::get('quiz/{id}', [QuizController::class, 'single'])->name('quiz.single');
 Route::get('quiz/{id}/edit', [QuizController::class, 'edit'])->name('quiz.edit');
 Route::put('quiz/{id}', [QuizController::class, 'update'])->name('quiz.update');
 Route::delete('quiz/{id}', [QuizController::class, 'destroy'])->name('quiz.destroy');
@@ -46,3 +48,10 @@ Route::post('question', [QuestionController::class, 'store'])->name('question.st
 Route::get('question/{id}/edit', [QuestionController::class, 'edit'])->name('question.edit');
 Route::put('question/{id}', [QuestionController::class, 'update'])->name('question.update');
 Route::delete('question/{id}', [QuestionController::class, 'destroy'])->name('question.destroy');
+
+Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('category', [CategoryController::class, 'store'])->name('category.store');
+Route::get('category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('category/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');

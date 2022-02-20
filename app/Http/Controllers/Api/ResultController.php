@@ -86,7 +86,7 @@ class ResultController extends Controller
     }
 
 
-    // Get each user quiz results
+    // Get each quiz result based on the user id
     public function userTakenQuiz($user_id)
     {
         $user_results = Result::where('user_id', $user_id)->latest()->get();
